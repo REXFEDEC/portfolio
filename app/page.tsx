@@ -10,7 +10,7 @@ export default function Home() {
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3)
 
   return (
-    <div className="px-6 py-12 max-w-3xl mx-auto lg:mx-0 lg:mr-auto animate-fade-in">
+    <div className="px-6 py-12 max-w-5xl mx-auto animate-fade-in">
       {/* Hero Section */}
       <section className="mb-16">
         <h1 className="text-5xl font-bold text-foreground mb-4 text-balance">{heroContent.name}</h1>
@@ -30,7 +30,7 @@ export default function Home() {
       {/* Featured Projects Section */}
       <section className="mb-16">
         <h2 className="text-2xl font-semibold text-foreground mb-6">Featured Projects</h2>
-        <div className="space-y-6">
+        <div className="flex flex-col gap-6">
           {featuredProjects.map((project) => (
             <ProjectCard key={project.id} project={project} featured={true} />
           ))}

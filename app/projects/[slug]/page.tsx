@@ -29,18 +29,51 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const { content } = project
 
+  const visitItems = (() => {
+    switch (slug) {
+      case 'sieve':
+        return [
+          { label: 'GitHub repository', href: "https://github.com/sieve-labs" },
+          { label: 'Lander', href: "https://sieve.goneto.space/" },
+          { label: 'Docs', href: "https://sieve-labs.gitbook.io/sieve" },
+        ]
+      case 'factorsphere':
+        return [
+          { label: 'GitHub repository', href: "https://github.com/FactorSphere" },
+          { label: 'Lander', href: "https://lander.factorsphere.org/" },
+          { label: 'Tool', href: "https://factorsphere.org/" },
+        ]
+      case 'aipdf':
+        return [
+          { label: 'GitHub repository', href: "https://github.com/REXFEDEC/AiPdfSummarizer" },
+          { label: 'Website', href: "https://pdf.goneto.space/" },
+        ]
+      case 'scanweb':
+        return [{ label: 'GitHub repository', href: "https://github.com/REXFEDEC/ScanWeb" }]
+      case 'securenotes':
+        return [{ label: 'GitHub repository', href: "https://github.com/REXFEDEC/SecureNotes" }]
+      case 'dreambit':
+        return [
+          { label: 'GitHub repository', href: "https://github.com/REXFEDEC/DreamBit" },
+          { label: 'Website', href: "https://dreambittech.rf.gd" },
+        ]
+      case 'musik':
+        return [{ label: 'GitHub repository', href: "https://github.com/REXFEDEC/Musik" }]
+      case 'shtick':
+        return [{ label: 'GitHub repository', href: "https://github.com/REXFEDEC/Shtick" }]
+      case 'labi-old':
+        return [{ label: 'GitHub repository', href: "https://github.com/REXFEDEC/Labi-Old" }]
+      default:
+        return []
+    }
+  })()
+
   return (
-    <div className="px-6 py-12 max-w-3xl mx-auto lg:mx-0 lg:mr-auto animate-fade-in">
+    <div className="px-6 py-12 max-w-5xl mx-auto animate-fade-in">
       <Breadcrumb />
       
       {/* Header */}
       <section className="mb-12">
-        <Link
-          href="/projects"
-          className="text-sm text-accent hover:underline mb-4 inline-block"
-        >
-          ← Back to projects
-        </Link>
         <h1 className="text-4xl font-bold text-foreground mb-2 text-balance">{project.title}</h1>
         <p className="text-lg text-muted-foreground">{content.subheading}</p>
       </section>
@@ -91,6 +124,31 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <div className="flex flex-wrap gap-2">
             {project.stack.map((tech) => (
               <TechBadge key={tech}>{tech}</TechBadge>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Visit Links */}
+      {visitItems.length > 0 && (
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold text-foreground mb-6">Visit</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {visitItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group border border-border rounded-lg p-4 bg-background hover:bg-card transition-colors"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-sm font-medium text-foreground group-hover:text-accent transition-colors">
+                    {item.label}
+                  </span>
+                  <span className="text-accent group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </a>
             ))}
           </div>
         </section>

@@ -1,35 +1,52 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Header } from '@/components/header'
 import { Sidebar } from '@/components/sidebar'
+import { Footer } from '@/components/footer'
 import { ScrollToTop } from '@/components/scroll-to-top'
+import { siteConfig, siteUrl } from '@/lib/data'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Sameer Mann - Software Engineer',
-  description: 'Portfolio of Sameer Mann, a software engineer passionate about building high-quality applications.',
-  generator: 'v0.app',
+  metadataBase: new URL(siteUrl),
+  title: `${siteConfig.name} - ${siteConfig.title}`,
+  description: `Portfolio of ${siteConfig.name}, a software engineer passionate about building high-quality applications.`,
+  applicationName: siteConfig.name,
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: [
+      { url: '/favicon.ico', type: 'image/x-icon' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon-180x180.png', sizes: '180x180', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    title: `${siteConfig.name} - ${siteConfig.title}`,
+    description: `Portfolio of ${siteConfig.name}`,
+    images: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/meta.png',
+        alt: `${siteConfig.name} preview`,
       },
     ],
-    apple: '/apple-icon.png',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${siteConfig.name} - ${siteConfig.title}`,
+    description: `Portfolio of ${siteConfig.name}`,
+    images: ['/meta.png'],
   },
 }
 
@@ -40,15 +57,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="font-sans antialiased dark">
+      <body className="font-sans antialiased dark min-h-screen flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Header />
           <Sidebar />
-          <main className="pt-16 lg:pl-56 min-h-screen">
+          <main className="pt-16 lg:pl-56 flex-1">
             {children}
           </main>
+          <Footer />
           <ScrollToTop />
-          <Analytics />
         </ThemeProvider>
       </body>
     </html>

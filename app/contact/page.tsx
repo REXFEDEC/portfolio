@@ -7,7 +7,7 @@ import { Breadcrumb } from '@/components/breadcrumb'
 
 export default function ContactPage() {
   return (
-    <div className="px-6 py-12 max-w-3xl mx-auto lg:mx-0 lg:mr-auto animate-fade-in">
+    <div className="px-6 py-12 max-w-5xl mx-auto animate-fade-in">
       <Breadcrumb />
       
       {/* Header */}
@@ -44,7 +44,7 @@ export default function ContactPage() {
         <Callout>
           If you want to support any of the open source projects, you can{' '}
           <a
-            href={`https://buymeacoffee.com/${siteConfig.buyMeACoffee}`}
+            href={`https://buymeacoffee.com/sameermann`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-accent hover:underline font-medium"

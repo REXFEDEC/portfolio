@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Home, Folder, Briefcase, Mail } from 'lucide-react'
 import { projects } from '@/lib/data'
 import { Button } from '@/components/ui/button'
 
@@ -11,7 +11,11 @@ export function Sidebar() {
   const pathname = usePathname()
   const [isProjectsOpen, setIsProjectsOpen] = useState(true)
 
-  const isActive = (href: string) => pathname === href
+  const isActive = (href: string) => {
+    const normalizedPath = pathname.replace(/\/$/, '') || '/'
+    const normalizedHref = href.replace(/\/$/, '') || '/'
+    return normalizedPath === normalizedHref
+  }
 
   return (
     <aside className="fixed left-0 top-16 bottom-0 w-56 border-r border-border bg-background p-6 overflow-y-auto hidden lg:block">
@@ -25,10 +29,11 @@ export function Sidebar() {
             <li>
               <Link
                 href="/"
-                className={`block text-sm px-3 py-2 rounded transition-colors ${
+                className={`flex items-center gap-2 text-sm px-3 py-2 rounded transition-colors ${
                   isActive('/') ? 'bg-accent/10 text-accent font-medium' : 'text-foreground hover:bg-muted'
                 }`}
               >
+                <Home size={16} />
                 Introduction
               </Link>
             </li>
@@ -53,12 +58,13 @@ export function Sidebar() {
                 <li key={project.id}>
                   <Link
                     href={`/projects/${project.slug}`}
-                    className={`block text-sm px-3 py-2 rounded transition-colors flex items-center gap-2 ${
+                    className={`flex items-center gap-2 text-sm px-3 py-2 rounded transition-colors ${
                       isActive(`/projects/${project.slug}`)
                         ? 'bg-accent/10 text-accent font-medium'
                         : 'text-foreground hover:bg-muted'
                     }`}
                   >
+                    <Folder size={14} />
                     {project.title}
                   </Link>
                 </li>
@@ -74,10 +80,11 @@ export function Sidebar() {
             <li>
               <Link
                 href="/experience"
-                className={`block text-sm px-3 py-2 rounded transition-colors ${
+                className={`flex items-center gap-2 text-sm px-3 py-2 rounded transition-colors ${
                   isActive('/experience') ? 'bg-accent/10 text-accent font-medium' : 'text-foreground hover:bg-muted'
                 }`}
               >
+                <Briefcase size={16} />
                 Work & Education
               </Link>
             </li>
@@ -91,10 +98,11 @@ export function Sidebar() {
             <li>
               <Link
                 href="/contact"
-                className={`block text-sm px-3 py-2 rounded transition-colors ${
+                className={`flex items-center gap-2 text-sm px-3 py-2 rounded transition-colors ${
                   isActive('/contact') ? 'bg-accent/10 text-accent font-medium' : 'text-foreground hover:bg-muted'
                 }`}
               >
+                <Mail size={16} />
                 Get in Touch
               </Link>
             </li>

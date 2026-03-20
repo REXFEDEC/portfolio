@@ -14,8 +14,17 @@ export function Header() {
     <>
       <header className="fixed top-0 left-0 right-0 h-16 border-b border-border bg-background/80 backdrop-blur-sm z-40">
         <div className="h-full px-6 flex items-center justify-between">
-          <Link href="/" className="font-semibold text-foreground hover:text-accent transition-colors">
-            {siteConfig.name}
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 hover:opacity-90 transition-opacity"
+            aria-label={siteConfig.name}
+          >
+            <img
+              src="/standard.png"
+              alt={siteConfig.name}
+              className="h-7 sm:h-8 md:h-9 w-auto"
+            />
+            <span className="font-semibold text-foreground hidden sm:inline">{siteConfig.name}</span>
           </Link>
 
           <div className="flex items-center gap-4">

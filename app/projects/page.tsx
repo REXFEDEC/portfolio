@@ -10,7 +10,7 @@ export default function ProjectsPage() {
   const others = projects.filter((p) => !p.featured)
 
   return (
-    <div className="px-6 py-12 max-w-3xl mx-auto lg:mx-0 lg:mr-auto animate-fade-in">
+    <div className="px-6 py-12 max-w-5xl mx-auto animate-fade-in">
       <Breadcrumb />
       
       {/* Header */}
@@ -24,7 +24,7 @@ export default function ProjectsPage() {
       {/* Featured Projects */}
       <section className="mb-16">
         <h2 className="text-2xl font-semibold text-foreground mb-6">Featured</h2>
-        <div className="space-y-4">
+        <div className="flex flex-col gap-4">
           {featured.map((project) => (
             <ProjectCard key={project.id} project={project} featured={true} />
           ))}

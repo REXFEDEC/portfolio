@@ -11,7 +11,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, featured = false }: ProjectCardProps) {
   return (
-    <Link href={`/projects/${project.slug}`}>
+    <Link href={`/projects/${project.slug}`} className="block">
       <div
         className={`group border border-border rounded-lg p-6 hover:border-accent/50 transition-all ${
           featured ? 'bg-card' : 'bg-background hover:bg-card'

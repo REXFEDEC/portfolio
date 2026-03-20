@@ -7,7 +7,7 @@ import { Breadcrumb } from '@/components/breadcrumb'
 
 export default function ExperiencePage() {
   return (
-    <div className="px-6 py-12 max-w-3xl mx-auto lg:mx-0 lg:mr-auto animate-fade-in">
+    <div className="px-6 py-12 max-w-5xl mx-auto animate-fade-in">
       <Breadcrumb />
       
       {/* Header */}

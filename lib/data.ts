@@ -3,12 +3,15 @@ export const siteConfig = {
   title: 'Software Engineer',
   description: 'Final-year B.Tech CSE student. Problem solver who ships.',
   author: 'Sameer Mann',
-  email: 'sameer@factorsphere.org',
+  email: 'sameermann5335@gmail.com',
   github: 'REXFEDEC',
   linkedIn: 'sameer-mann',
   instagram: 'sameer.mkv',
   buyMeACoffee: 'sameermannand',
 }
+
+// Used for absolute URLs in SEO/OpenGraph/Twitter metadata.
+export const siteUrl = 'https://sameer.goneto.space'
 
 export const heroContent = {
   name: 'Sameer Mann',
@@ -23,7 +26,7 @@ I'm currently open to full-time roles, remote work, freelance projects, and inte
 export const stats = [
   { label: 'Projects shipped', value: '9+' },
   { label: 'Live products', value: '7' },
-  { label: 'Most built in', value: '1 day' },
+  { label: 'Currently Working on', value: 'Sieve' },
   { label: 'Current status', value: 'Open to work' },
 ]
 
@@ -385,7 +388,7 @@ export const buildTimes = [
 ]
 
 export const contactLinks = [
-  { label: 'Email', value: 'sameer@factorsphere.org', href: 'mailto:sameer@factorsphere.org' },
+  { label: 'Email', value: 'sameermann5335@gmail.com', href: 'mailto:sameermann5335@gmail.com' },
   { label: 'GitHub', value: 'github.com/REXFEDEC', href: 'https://github.com/REXFEDEC' },
   { label: 'LinkedIn', value: 'linkedin.com/in/sameer-mann', href: 'https://linkedin.com/in/sameer-mann' },
   { label: 'Instagram', value: 'instagram.com/sameer.mkv', href: 'https://instagram.com/sameer.mkv' },

@@ -11,7 +11,7 @@ export function Breadcrumb() {
   // Generate breadcrumb items based on pathname
   const getBreadcrumbs = () => {
     const segments = pathname.split('/').filter(Boolean)
-    const breadcrumbs = [{ label: 'Home', href: '/' }]
+    const breadcrumbs: Array<{ label: string; href: string }> = []
 
     if (segments.length === 0) {
       return []
@@ -47,10 +47,9 @@ export function Breadcrumb() {
 
   return (
     <nav className="flex items-center gap-2 flex-wrap mb-8 pb-4 border-b border-border/40 text-xs text-muted-foreground animate-slide-in-left">
-      <Link href="/" className="hover:text-foreground transition-colors inline-flex items-center gap-1">
-        <Home size={14} />
+      <Link href="/" className="hover:text-foreground transition-colors flex items-center gap-1">
+        <Home size={12} />
       </Link>
-
       {breadcrumbs.map((breadcrumb, index) => (
         <div key={breadcrumb.href} className="flex items-center gap-2">
           <ChevronRight size={12} className="text-muted-foreground/50" />
