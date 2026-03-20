@@ -20,8 +20,9 @@ export function Footer() {
             <span className="font-semibold text-foreground hidden sm:inline">{siteConfig.name}</span>
           </a>
 
-          <div className="text-sm text-muted-foreground">
-            &copy; {year} {siteConfig.name}. All rights reserved.
+          <div className="flex flex-col gap-1 text-sm text-muted-foreground">
+            <div>&copy; {year} {siteConfig.name}. All rights reserved.</div>
+            <div className="text-xs">Hosted using Cloudflare Pages</div>
           </div>
         </div>
       </div>
