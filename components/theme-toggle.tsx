@@ -28,9 +28,10 @@ export function ThemeToggle() {
     <button
       onClick={handleThemeToggle}
       className="inline-flex items-center justify-center w-10 h-10 rounded-md text-foreground hover:text-accent hover:bg-muted transition-colors"
-      aria-label="Toggle theme"
+      aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+      aria-pressed={theme === 'dark'}
     >
-      {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+      {theme === 'dark' ? <Sun size={20} aria-hidden="true" /> : <Moon size={20} aria-hidden="true" />}
     </button>
   )
 }

@@ -46,15 +46,15 @@ export function Breadcrumb() {
   }
 
   return (
-    <nav className="flex items-center gap-2 flex-wrap mb-8 pb-4 border-b border-border/40 text-xs text-muted-foreground animate-slide-in-left">
-      <Link href="/" className="hover:text-foreground transition-colors flex items-center gap-1">
+    <nav aria-label="Breadcrumb" className="flex items-center gap-2 flex-wrap mb-8 pb-4 border-b border-border/40 text-xs text-muted-foreground animate-slide-in-left">
+      <Link href="/" className="hover:text-foreground transition-colors flex items-center gap-1" aria-label="Home">
         <Home size={12} />
       </Link>
       {breadcrumbs.map((breadcrumb, index) => (
         <div key={breadcrumb.href} className="flex items-center gap-2">
-          <ChevronRight size={12} className="text-muted-foreground/50" />
+          <ChevronRight size={12} className="text-muted-foreground/50" aria-hidden="true" />
           {index === breadcrumbs.length - 1 ? (
-            <span className="text-foreground">{breadcrumb.label}</span>
+            <span className="text-foreground" aria-current="page">{breadcrumb.label}</span>
           ) : (
             <Link
               href={breadcrumb.href}

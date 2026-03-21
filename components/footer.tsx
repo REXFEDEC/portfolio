@@ -13,9 +13,14 @@ export function Footer() {
             aria-label={siteConfig.name}
           >
             <img
-              src="/standard.png"
+              src="/smlight.png"
               alt={siteConfig.name}
-              className="h-7 sm:h-8 md:h-9 w-auto"
+              className="h-7 sm:h-8 md:h-9 w-auto icon-light"
+            />
+            <img
+              src="/smdark.png"
+              alt={siteConfig.name}
+              className="h-7 sm:h-8 md:h-9 w-auto icon-dark"
             />
             <span className="font-semibold text-foreground hidden sm:inline">{siteConfig.name}</span>
           </a>

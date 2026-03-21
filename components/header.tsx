@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Github, Menu, X } from 'lucide-react'
+import { Github, Menu, X, FileText } from 'lucide-react'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { MobileNav } from '@/components/mobile-nav'
 import { siteConfig } from '@/lib/data'
@@ -20,9 +20,14 @@ export function Header() {
             aria-label={siteConfig.name}
           >
             <img
-              src="/standard.png"
+              src="/smlight.png"
               alt={siteConfig.name}
-              className="h-7 sm:h-8 md:h-9 w-auto"
+              className="h-7 sm:h-8 md:h-9 w-auto icon-light"
+            />
+            <img
+              src="/smdark.png"
+              alt={siteConfig.name}
+              className="h-7 sm:h-8 md:h-9 w-auto icon-dark"
             />
             <span className="font-semibold text-foreground hidden sm:inline">{siteConfig.name}</span>
           </Link>
@@ -37,6 +42,17 @@ export function Header() {
               title="GitHub"
             >
               <Github size={20} />
+            </a>
+
+            {/* Resume */}
+            <a
+              href="/res.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex text-foreground hover:text-accent transition-colors"
+              title="Resume"
+            >
+              <FileText size={20} />
             </a>
 
             {/* Theme Toggle */}

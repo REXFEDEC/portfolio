@@ -15,7 +15,7 @@
   --secondary: #2a2a2a;
   --secondary-foreground: #f0f0f0;
   --muted: #3a3a3a;
-  --muted-foreground: #999999;
+  --muted-foreground: #b0b0b0;
   --accent: #7085FF;
   --accent-foreground: #0a0a0a;
   --destructive: #FF4545;
@@ -41,6 +41,7 @@
 
 html {
   color-scheme: dark;
+  font-size: 17.6px;
 }
 
 html.light {
@@ -126,9 +127,43 @@ html.light {
   }
   body {
     @apply bg-background text-foreground;
+    min-height: 100vh;
   }
 
-  /* Scrollbar Styling */
+  /* Focus visible styles for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Skip link for keyboard navigation */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--background);
+    color: var(--foreground);
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 100;
+    border: 2px solid var(--ring);
+    border-radius: var(--radius);
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
   ::-webkit-scrollbar {
     width: 10px;
   }
@@ -226,6 +261,18 @@ html.light {
 
   main {
     animation: fadeIn 0.3s ease-out;
+  }
+
+  /* Icon visibility for light/dark mode */
+  .icon-light,
+  .icon-dark {
+    display: none;
+  }
+  
+  html.light .icon-light,
+  :root:not(.light) .icon-dark,
+  html:not(.light) .icon-dark {
+    display: inline-block;
   }
 }
 

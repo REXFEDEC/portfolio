@@ -16,6 +16,13 @@ export default function Home() {
         <h1 className="text-5xl font-bold text-foreground mb-4 text-balance">{heroContent.name}</h1>
         <p className="text-lg text-muted-foreground mb-8 leading-relaxed text-balance">{heroContent.title}</p>
         <p className="text-foreground mb-8 leading-relaxed whitespace-pre-line">{heroContent.bio}</p>
+        <Link
+          href="/projects"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent/90 transition-colors"
+        >
+          View all projects
+          <span aria-hidden="true">→</span>
+        </Link>
       </section>
 
       {/* Stats Section */}

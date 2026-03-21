@@ -3,9 +3,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { ChevronDown, Home, Folder, Briefcase, Mail } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { projects } from '@/lib/data'
-import { Button } from '@/components/ui/button'
 
 export function Sidebar() {
   const pathname = usePathname()
@@ -32,8 +31,12 @@ export function Sidebar() {
                 className={`flex items-center gap-2 text-sm px-3 py-2 rounded transition-colors ${
                   isActive('/') ? 'bg-accent/10 text-accent font-medium' : 'text-foreground hover:bg-muted'
                 }`}
+                aria-current={isActive('/') ? 'page' : undefined}
               >
-                <Home size={16} />
+                {/* Light mode icon */}
+                <img src="/svg/intro-light.svg" alt="" className="w-4 h-4 icon-light" />
+                {/* Dark mode icon */}
+                <img src="/svg/intro-dark.svg" alt="" className="w-4 h-4 icon-dark" />
                 Introduction
               </Link>
             </li>
@@ -42,18 +45,32 @@ export function Sidebar() {
 
         {/* Projects Section */}
         <div>
-          <button
-            onClick={() => setIsProjectsOpen(!isProjectsOpen)}
-            className="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-muted-foreground mb-4 hover:text-foreground transition-colors w-full"
-          >
-            Projects
-            <ChevronDown
-              size={14}
-              className={`ml-auto transition-transform ${isProjectsOpen ? 'rotate-0' : '-rotate-90'}`}
-            />
-          </button>
+          <div className="flex items-center justify-between mb-4">
+            <Link
+              href="/projects"
+              className={`text-xs uppercase tracking-widest font-semibold transition-colors ${
+                isActive('/projects') ? 'text-accent' : 'text-muted-foreground hover:text-foreground'
+              }`}
+              aria-current={isActive('/projects') ? 'page' : undefined}
+            >
+              Projects
+            </Link>
+            <button
+              onClick={() => setIsProjectsOpen(!isProjectsOpen)}
+              className="flex items-center text-muted-foreground hover:text-foreground transition-colors p-1"
+              aria-expanded={isProjectsOpen}
+              aria-controls="projects-nav"
+              aria-label={isProjectsOpen ? 'Collapse projects' : 'Expand projects'}
+            >
+              <ChevronDown
+                width={14}
+                height={14}
+                className={`transition-transform ${isProjectsOpen ? 'rotate-0' : '-rotate-90'}`}
+              />
+            </button>
+          </div>
           {isProjectsOpen && (
-            <ul className="space-y-2 animate-expand">
+            <ul id="projects-nav" className="space-y-2 animate-expand">
               {projects.map((project) => (
                 <li key={project.id}>
                   <Link
@@ -63,8 +80,12 @@ export function Sidebar() {
                         ? 'bg-accent/10 text-accent font-medium'
                         : 'text-foreground hover:bg-muted'
                     }`}
+                    aria-current={isActive(`/projects/${project.slug}`) ? 'page' : undefined}
                   >
-                    <Folder size={14} />
+                    {/* Light mode icon */}
+                    <img src={`/svg/${project.slug === 'factorsphere' ? 'fs' : project.slug === 'aipdf' ? 'pdf' : project.slug === 'scanweb' ? 'scan' : project.slug === 'securenotes' ? 'sn' : project.slug === 'dreambit' ? 'dbt' : project.slug === 'labi-old' ? 'labi' : project.slug}-light.svg`} alt="" className="w-3.5 h-3.5 icon-light" />
+                    {/* Dark mode icon */}
+                    <img src={`/svg/${project.slug === 'factorsphere' ? 'fs' : project.slug === 'aipdf' ? 'pdf' : project.slug === 'scanweb' ? 'scan' : project.slug === 'securenotes' ? 'sn' : project.slug === 'dreambit' ? 'dbt' : project.slug === 'labi-old' ? 'labi' : project.slug}-dark.svg`} alt="" className="w-3.5 h-3.5 icon-dark" />
                     {project.title}
                   </Link>
                 </li>
@@ -83,8 +104,12 @@ export function Sidebar() {
                 className={`flex items-center gap-2 text-sm px-3 py-2 rounded transition-colors ${
                   isActive('/experience') ? 'bg-accent/10 text-accent font-medium' : 'text-foreground hover:bg-muted'
                 }`}
+                aria-current={isActive('/experience') ? 'page' : undefined}
               >
-                <Briefcase size={16} />
+                {/* Light mode icon */}
+                <img src="/svg/we-light.svg" alt="" className="w-4 h-4 icon-light" />
+                {/* Dark mode icon */}
+                <img src="/svg/we-dark.svg" alt="" className="w-4 h-4 icon-dark" />
                 Work & Education
               </Link>
             </li>
@@ -101,8 +126,12 @@ export function Sidebar() {
                 className={`flex items-center gap-2 text-sm px-3 py-2 rounded transition-colors ${
                   isActive('/contact') ? 'bg-accent/10 text-accent font-medium' : 'text-foreground hover:bg-muted'
                 }`}
+                aria-current={isActive('/contact') ? 'page' : undefined}
               >
-                <Mail size={16} />
+                {/* Light mode icon */}
+                <img src="/svg/gt-light.svg" alt="" className="w-4 h-4 icon-light" />
+                {/* Dark mode icon */}
+                <img src="/svg/gt-dark.svg" alt="" className="w-4 h-4 icon-dark" />
                 Get in Touch
               </Link>
             </li>
