@@ -194,7 +194,10 @@ LANGUAGES:
     
     const data = await response.json();
     
-    return new Response(JSON.stringify(data), {
+    // Extract the assistant's reply
+    const reply = data.choices?.[0]?.message?.content || 'Sorry, I could not generate a response.';
+    
+    return new Response(JSON.stringify({ reply }), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
@@ -204,7 +207,7 @@ LANGUAGES:
     
   } catch (error) {
     console.error('Chat API error:', error);
-    return new Response(JSON.stringify({ error: 'Internal server error' }), {
+    return new Response(JSON.stringify({ reply: 'Something went wrong. Please try again.' }), {
       status: 500,
       headers: {
         'Content-Type': 'application/json',
