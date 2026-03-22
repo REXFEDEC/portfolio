@@ -59,21 +59,26 @@ export function ChatBubble() {
     const userMessage = text.trim();
     if (!userMessage || loading) return;
 
+    console.log('Sending message:', userMessage);
     const updated: Message[] = [...messages, { role: "user", content: userMessage }];
     setMessages(updated);
     setInput("");
     setLoading(true);
 
     try {
+      console.log('Making fetch request to /api/chat...');
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: updated }),
       });
-
+      
+      console.log('Response status:', res.status);
       const data = await res.json();
+      console.log('Response data:', data);
       setMessages([...updated, { role: "assistant", content: data.reply || data.error }]);
-    } catch {
+    } catch (error) {
+      console.error('Fetch error:', error);
       setMessages([
         ...updated,
         { role: "assistant", content: "Something went wrong. Try again." },
