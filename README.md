@@ -30,6 +30,25 @@ cd <project-directory>
 pnpm install
 ```
 
+### Environment Variables
+
+Create a `.env.local` file in the project root:
+
+```bash
+# Required for AI chat feature
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+
+# Optional: Override the default model
+# OPENROUTER_MODEL=google/gemini-2.0-flash-exp:free
+
+# Optional: Override the site URL for OpenRouter headers
+# NEXT_PUBLIC_SITE_URL=https://sameer.goneto.space
+```
+
+Get a free OpenRouter API key at: https://openrouter.ai/keys
+
+The chat feature will work without the API key, but will show rate-limit errors.
+
 3. Run the development server:
 ```bash
 pnpm dev
@@ -60,9 +79,15 @@ This portfolio is optimized for Cloudflare Pages deployment. Follow these steps 
    - **Build output directory**: `out`
    - **Root directory (advanced)**: `/` (default)
 
-4. **Environment Variables** (if needed)
-   - Add any required environment variables in the Pages project settings
-   - For this portfolio, typically no env vars are needed
+4. **Environment Variables**
+   - Add the following environment variables in the Pages project settings:
+     ```
+     OPENROUTER_API_KEY=your_openrouter_api_key_here
+     OPENROUTER_MODEL=google/gemini-2.0-flash-exp:free
+     NEXT_PUBLIC_SITE_URL=https://your-domain.com
+     ```
+   - Get your API key at: https://openrouter.ai/keys
+   - The chat feature will work without the API key but will show rate-limit errors
 
 5. **Deploy**
    - Click **Save and Deploy**

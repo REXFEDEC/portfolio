@@ -5,6 +5,7 @@ import { Header } from '@/components/header'
 import { Sidebar } from '@/components/sidebar'
 import { Footer } from '@/components/footer'
 import { ScrollToTop } from '@/components/scroll-to-top'
+import { ChatBubble } from '@/components/chat-bubble'
 import { siteConfig, siteUrl } from '@/lib/data'
 import './globals.css'
 
@@ -70,6 +71,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <ScrollToTop />
+          <ChatBubble />
         </ThemeProvider>
       </body>
     </html>

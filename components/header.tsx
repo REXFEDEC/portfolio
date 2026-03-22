@@ -49,7 +49,7 @@ export function Header() {
               href="/res.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex text-foreground hover:text-accent transition-colors"
+              className="flex text-foreground hover:text-accent transition-colors"
               title="Resume"
             >
               <FileText size={20} />

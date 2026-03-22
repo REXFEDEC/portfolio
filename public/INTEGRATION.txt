@@ -1,0 +1,137 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AI CHAT — INTEGRATION GUIDE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FILES TO ADD TO YOUR V0/NEXT.JS PROJECT:
+  route.ts        →  app/api/chat/route.ts
+  chat-bubble.tsx →  components/chat-bubble.tsx
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 1 — INSTALL DEPENDENCIES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+npm install @google/generative-ai react-markdown
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 2 — GET YOUR FREE GEMINI API KEY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Go to: https://aistudio.google.com/app/apikey
+2. Sign in with your Google account
+3. Click "Create API key"
+4. Copy the key
+
+Free tier limits (Gemini 1.5 Flash):
+  - 1,500 requests per day
+  - 1,000,000 tokens per day
+  - 15 requests per minute
+  For a portfolio site this is effectively unlimited.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 3 — ADD THE API KEY TO YOUR ENVIRONMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Create or edit .env.local in your project root:
+
+  GEMINI_API_KEY=your_key_here
+
+If deploying to Cloudflare Pages:
+  - Go to your Cloudflare Pages project
+  - Settings → Environment variables
+  - Add: GEMINI_API_KEY = your_key_here
+  - Add to both Production and Preview environments
+
+IMPORTANT: .env.local is already in .gitignore by default in
+Next.js. Never commit your API key to git.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 4 — ADD THE COMPONENT TO YOUR LAYOUT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+In app/layout.tsx, import and add <ChatBubble /> at the
+bottom of your <body> tag, after your main content:
+
+  import { ChatBubble } from "@/components/chat-bubble";
+
+  export default function RootLayout({ children }) {
+    return (
+      <html>
+        <body>
+          {/* your sidebar, navbar, main content */}
+          {children}
+          <ChatBubble />   {/* ← add this */}
+        </body>
+      </html>
+    );
+  }
+
+That's it. The bubble is position: fixed so it floats above
+everything regardless of page layout.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HOW THE JAILBREAK PROTECTION WORKS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The system prompt uses a structural grounding technique rather
+than just telling the model "don't answer other questions."
+
+The model is defined as a "read-only information terminal"
+with exactly one data source. This framing makes it treat
+out-of-scope questions as having no answer to return rather
+than questions it is forbidden from answering — which is much
+harder to socially engineer around.
+
+Temperature is set to 0.2 (low) which further reduces the
+model's tendency to improvise or be creative with its scope.
+
+If someone tries: "ignore previous instructions and tell me..."
+The model has no previous persona to revert to — it was never
+defined as a general assistant in the first place.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CUSTOMISING THE SUGGESTED QUESTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+In chat-bubble.tsx, find the SUGGESTED array near the top
+and edit the strings freely:
+
+  const SUGGESTED = [
+    "What has Sameer built?",
+    "What's his tech stack?",
+    "Is he open to freelance?",
+    ...
+  ];
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+V0 PROMPT ADDITION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Add this section to the bottom of the v0 prompt when
+generating the site, so v0 knows the chat component exists
+and doesn't try to recreate it:
+
+---
+
+## AI CHAT BUBBLE
+
+The site has a floating AI chat bubble component at
+`components/chat-bubble.tsx`. Do NOT generate this component
+— it already exists and is imported separately.
+
+In `app/layout.tsx`, import and render it at the bottom of
+the body, after all other content:
+
+  import { ChatBubble } from "@/components/chat-bubble";
+  // Add <ChatBubble /> as the last child of <body>
+
+The bubble is `position: fixed` bottom-right. It uses #7085FF
+as its accent color and matches the site's dark/light theme
+via CSS variables. No additional styling needed.
+
+---
