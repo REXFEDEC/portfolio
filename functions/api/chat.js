@@ -21,7 +21,26 @@ export async function onRequest(context) {
     const { messages } = await request.json();
     
     if (!messages || !Array.isArray(messages)) {
-      return new Response('Invalid request body', { status: 400 });
+      return new Response(JSON.stringify({ reply: 'Invalid request body' }), { 
+        status: 400,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
+    }
+    
+    // Check if API key is available
+    if (!env.OPENROUTER_API_KEY) {
+      return new Response(JSON.stringify({ 
+        reply: 'Chat service is not configured. Please add OPENROUTER_API_KEY to your environment variables.' 
+      }), {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
     }
     
     // Call OpenRouter API
@@ -191,6 +210,20 @@ LANGUAGES:
         max_tokens: 1000,
       }),
     });
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('OpenRouter API error:', response.status, errorText);
+      return new Response(JSON.stringify({ 
+        reply: 'Sorry, the AI service is temporarily unavailable. Please try again later.' 
+      }), {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
+    }
     
     const data = await response.json();
     
