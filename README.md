@@ -74,9 +74,9 @@ This portfolio is optimized for Cloudflare Pages deployment. Follow these steps 
 3. **Configure Build Settings**
    - **Project name**: Choose a name (e.g., `sameer-portfolio`)
    - **Production branch**: `master` (or your main branch)
-   - **Framework preset**: Select `Next.js`
+   - **Framework preset**: Select `Next.js (Static HTML Export)`
    - **Build command**: `pnpm install && pnpm build`
-   - **Build output directory**: Leave blank (Next.js default)
+   - **Build output directory**: `out`
    - **Root directory (advanced)**: `/` (default)
 
 4. **Environment Variables**
@@ -115,7 +115,7 @@ pnpm build
 
 4. **Deploy using Wrangler**:
 ```bash
-wrangler pages deploy .next
+wrangler pages deploy out
 ```
 
 ### Custom Domain Setup
