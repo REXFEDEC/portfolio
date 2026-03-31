@@ -20,16 +20,15 @@ export function Header() {
             aria-label={siteConfig.name}
           >
             <img
-              src="/smlight.png"
+              src="/smtr.png"
               alt={siteConfig.name}
               className="h-7 sm:h-8 md:h-9 w-auto icon-light"
             />
             <img
-              src="/smdark.png"
+              src="/smtr.png"
               alt={siteConfig.name}
               className="h-7 sm:h-8 md:h-9 w-auto icon-dark"
             />
-            <span className="font-semibold text-foreground hidden sm:inline">{siteConfig.name}</span>
           </Link>
 
           <div className="flex items-center gap-4">

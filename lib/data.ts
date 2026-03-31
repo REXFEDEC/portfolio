@@ -15,10 +15,12 @@ export const siteUrl = 'https://sameer.goneto.space'
 
 export const heroContent = {
   name: 'Sameer Mann',
-  title: 'Final-year B.Tech CSE student. Problem solver who ships.',
-  bio: `I build things fast — from open-source research tools to cross-platform AI apps. Zero to shipped, sometimes in a day.
+  title: 'Final-year B.Tech CSE student. Delhi, India.',
+  bio: `I build things that are needed and I build them quick.
+Currently finishing my CS degree at GGSIPU (graduating 2026). 
+Spent 5 months at an Antler-backed venture studio shipping SaaS MVPs.
 
-Currently finishing my CS degree at GGSIPU (graduating 2026). Spent 5 months at an Antler-backed venture studio shipping SaaS MVPs, often within a week.
+Working stack includes: React, Flutter, Python, Firebase, and more.
 
 Open to full-time roles, remote work, and freelance projects.`,
 }
@@ -325,23 +327,24 @@ export const projects: Project[] = [
 ]
 
 export const testimonials = [
-      {
+  {
     quote:
-      'A valuable resource that brings together journal info, impact factors, and direct links — all on one platform. The AI-assisted recommender makes finding the right journal much more efficient.',
+      'In the rapidly evolving landscape of scientific research, identifying the most suitable journal for publication can be a challenging task for a PhD student. This website serves as a valuable resource by bringing together comprehensive information about a wide range of journals, including direct links and their respective impact factors — everything on one platform. An added advantage is the AI-assisted journal recommender, which provides tailored recommendations based on the abstract, making the process even more efficient and user-friendly.',
     author: 'Atharva Mahajan',
   },
   {
     quote:
-      'Extremely simple and lucid to use. The interface feels contemporary, and the catalogue is minimalistic — exactly what academics need.',
+      'Factorsphere is an extremely simple portal to utilise in searching for your academic needs. The layout is extremely nice and lucid to use — the interface is contemporary to any research journal page. The catalogue creation is structured and minimalistic, which is what any academic individual wishes for. It can truly democratize rankings by trying to preserve the integrity of academic studies.',
     author: 'Abhishek Rajwade',
   },
   {
     quote:
-      'Amazing tool with an easy interface. Quickly access impact factors across multiple fields and find the right journals to publish in.',
+      'FactorSphere is an amazing tool with an easy user interface, that helps one quickly access the impact factor of journals in multiple fields and decide which journals one could consider to publish their work in.',
     author: 'Mincy Kunjumon',
   },
   {
-    quote: 'Helped me narrow down journals for my paper. Been a great help!',
+    quote:
+      'Using this website has helped to narrow down the journals I would like to publish my paper in. Thank you so much! It has been of a great help!',
     author: 'Sristi Pradhan',
   },
 ]

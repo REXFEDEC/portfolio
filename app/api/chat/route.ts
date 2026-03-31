@@ -167,26 +167,57 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "No messages provided" }, { status: 400 });
     }
 
-    const response = await client.chat.completions.create({
-      model: process.env.OPENROUTER_MODEL ?? "google/gemini-2.0-flash-exp:free",
-      max_tokens: 1024,
-      temperature: 0.2,
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        ...messages.map((m) => ({
-          role: m.role as "user" | "assistant",
-          content: m.content,
-        })),
-      ],
-    });
+    // Retry logic for rate limiting
+    let lastError: Error | null = null;
+    const maxRetries = 3;
+    
+    for (let attempt = 0; attempt < maxRetries; attempt++) {
+      try {
+        const response = await client.chat.completions.create({
+          model: process.env.OPENROUTER_MODEL ?? "google/gemini-2.0-flash-exp:free",
+          max_tokens: 1024,
+          temperature: 0.2,
+          messages: [
+            { role: "system", content: SYSTEM_PROMPT },
+            ...messages.map((m) => ({
+              role: m.role as "user" | "assistant",
+              content: m.content,
+            })),
+          ],
+        });
 
-    const reply = response.choices[0]?.message?.content ?? "No response.";
-    return NextResponse.json({ reply });
-  } catch (err) {
+        const reply = response.choices[0]?.message?.content ?? "No response.";
+        return NextResponse.json({ reply });
+      } catch (err: unknown) {
+        lastError = err as Error;
+        const status = (err as { status?: number })?.status;
+        
+        // Only retry on 429 (rate limit) errors
+        if (status === 429 && attempt < maxRetries - 1) {
+          // Exponential backoff: 1s, 2s, 4s
+          await new Promise((resolve) => setTimeout(resolve, 1000 * Math.pow(2, attempt)));
+          continue;
+        }
+        throw err;
+      }
+    }
+    
+    throw lastError;
+  } catch (err: unknown) {
     console.error("Chat route error:", err);
+    
+    // Check for rate limit error
+    const status = (err as { status?: number })?.status;
+    if (status === 429) {
+      return NextResponse.json(
+        { reply: "The AI service is currently rate-limited. Please wait a moment and try again, or ask one of the suggested questions for an instant answer." },
+        { status: 200 }
+      );
+    }
+    
     return NextResponse.json(
-      { error: "Something went wrong. Please try again." },
-      { status: 500 }
+      { reply: "Something went wrong. Please try again." },
+      { status: 200 }
     );
   }
 }

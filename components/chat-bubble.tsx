@@ -18,6 +18,85 @@ const SUGGESTED = [
   "What's his work experience?",
 ];
 
+const SUGGESTED_RESPONSES: Record<string, string> = {
+  "What has Sameer built?": `Sameer has shipped **9+ projects** including:
+
+- **Sieve** — Cross-platform AI image sorter (Android, Linux, Windows, macOS)
+- **FactorSphere** — Academic journal ranking platform with 4,000+ journals
+- **AiPDF Summarizer** — PDF summarizer with OCR support
+- **ScanWeb** — AI-powered web vulnerability scanner
+- **SecureNotes** — End-to-end encrypted note-taking app
+- **Dreambit** — Full-stack e-commerce site
+- **Musik** — Flutter music player
+- **Shtick** — Local AI model scripts
+
+[View all projects →](/projects)`,
+
+  "What's his tech stack?": `**Frontend:** React, Next.js, TypeScript, Tailwind CSS, Flutter, Figma
+
+**Backend:** Node.js, Python, Express, FastAPI
+
+**Databases:** PostgreSQL, MongoDB, Supabase
+
+**AI/ML:** OpenRouter, Ollama, OpenAI, Anthropic, Google Gemini
+
+**Cloud:** Cloudflare Pages, Vercel, AWS
+
+**Mobile:** React Native, Expo, Flutter
+
+**Tools:** Git, Docker, CI/CD`,
+
+  "Is he open to freelance?": `Yes! Sameer is open to:
+
+- **Full-time roles** (remote or on-site)
+- **Remote/WFH positions**
+- **Freelance projects**
+- **Interesting collaborations**
+
+You can reach him at [sameermann5335@gmail.com](mailto:sameermann5335@gmail.com) or via [LinkedIn](https://linkedin.com/in/sameer-mann).
+
+[Get in touch →](/contact)`,
+
+  "Tell me about Sieve": `**Sieve** is a free, open-source, cross-platform app that uses vision AI to automatically classify and organize image collections.
+
+**Key features:**
+- Classifies images against any label set you define
+- Renames files to clean \`date_time_label\` format
+- Organizes images into folders by label
+- Works fully offline with Ollama
+- No accounts, no cloud storage, no subscriptions
+
+**Platforms:** Android, Linux, Windows, macOS
+
+**Built in:** 3 days
+
+[Learn more →](/projects/sieve)`,
+
+  "Tell me about FactorSphere": `**FactorSphere** is an open-source academic journal ranking platform that aggregates citation and quality data from multiple sources.
+
+**Key features:**
+- 4,000+ journals indexed
+- Multi-dimensional ranking (Impact Factor, CiteScore, SNIP, SJR)
+- AI-powered journal recommendations
+- Fully documented methodology
+- Free and open data
+
+**Built in:** ~1 month
+
+[Learn more →](/projects/factorsphere)`,
+
+  "What's his work experience?": `**Full Stack Developer** at an Antler-backed Venture Studio (5 months, two stints)
+
+- Built and shipped SaaS MVPs across multiple startup ideas
+- Delivered production-ready prototypes within days
+- Stack varied per project: React frontends, Python backends, Supabase, cloud infrastructure
+- Covered everything including brand/logo work
+
+Currently finishing his B.Tech in CSE at GGSIPU (graduating 2026).
+
+[View experience →](/experience)`,
+};
+
 export function ChatBubble() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -59,23 +138,29 @@ export function ChatBubble() {
     const userMessage = text.trim();
     if (!userMessage || loading) return;
 
-    console.log('Sending message:', userMessage);
     const updated: Message[] = [...messages, { role: "user", content: userMessage }];
     setMessages(updated);
     setInput("");
     setLoading(true);
 
+    // Check if this is a suggested question with a pre-defined response
+    const predefinedResponse = SUGGESTED_RESPONSES[userMessage];
+    if (predefinedResponse) {
+      // Simulate a brief delay for better UX
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      setMessages([...updated, { role: "assistant", content: predefinedResponse }]);
+      setLoading(false);
+      return;
+    }
+
     try {
-      console.log('Making fetch request to /api/chat...');
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: updated }),
       });
       
-      console.log('Response status:', res.status);
       const data = await res.json();
-      console.log('Response data:', data);
       setMessages([...updated, { role: "assistant", content: data.reply || data.error }]);
     } catch (error) {
       console.error('Fetch error:', error);
