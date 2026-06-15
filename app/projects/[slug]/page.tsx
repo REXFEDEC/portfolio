@@ -34,7 +34,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       case 'sieve':
         return [
           { label: 'GitHub repository', href: "https://github.com/sieve-labs" },
-          { label: 'Lander', href: "https://sieve.goneto.space/" },
+          { label: 'Lander', href: "https://sieve.smann.cc/" },
           { label: 'Docs', href: "https://sieve-labs.gitbook.io/sieve" },
         ]
       case 'factorsphere':
@@ -46,7 +46,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       case 'aipdf':
         return [
           { label: 'GitHub repository', href: "https://github.com/REXFEDEC/AiPdfSummarizer" },
-          { label: 'Website', href: "https://pdf.goneto.space/" },
+          { label: 'Website', href: "https://pdf.smann.cc/" },
         ]
       case 'scanweb':
         return [{ label: 'GitHub repository', href: "https://github.com/REXFEDEC/ScanWeb" }]

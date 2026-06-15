@@ -42,7 +42,7 @@ OPENROUTER_API_KEY=your_openrouter_api_key_here
 # OPENROUTER_MODEL=google/gemini-2.0-flash-exp:free
 
 # Optional: Override the site URL for OpenRouter headers
-# NEXT_PUBLIC_SITE_URL=https://sameer.goneto.space
+# NEXT_PUBLIC_SITE_URL=https://projects.smann.cc
 ```
 
 Get a free OpenRouter API key at: https://openrouter.ai/keys

@@ -3,7 +3,7 @@ export const siteConfig = {
   title: 'Software Engineer',
   description: 'Final-year B.Tech CSE student. Problem solver who ships.',
   author: 'Sameer Mann',
-  email: 'sameermann5335@gmail.com',
+  email: 'sameer@smann.cc',
   github: 'REXFEDEC',
   linkedIn: 'sameer-mann',
   instagram: 'sameer.mkv',
@@ -11,7 +11,7 @@ export const siteConfig = {
 }
 
 // Used for absolute URLs in SEO/OpenGraph/Twitter metadata.
-export const siteUrl = 'https://sameer.goneto.space'
+export const siteUrl = 'https://projects.smann.cc'
 
 export const heroContent = {
   name: 'Sameer Mann',
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     links: {
       github: 'https://github.com/sieve-labs',
       download: 'https://github.com/sieve-labs/sieve-app/releases',
-      website: 'https://sieve.goneto.space',
+      website: 'https://sieve.smann.cc',
     },
     featured: true,
     content: {
@@ -144,7 +144,7 @@ export const projects: Project[] = [
     stack: ['React', 'Cloudflare Workers AI', 'PDF.js', 'OCR.space'],
     links: {
       github: 'https://github.com/REXFEDEC/AiPdfSummarizer',
-      live: 'https://pdf.goneto.space',
+      live: 'https://pdf.smann.cc',
     },
     featured: true,
     content: {
@@ -168,7 +168,7 @@ export const projects: Project[] = [
     stack: ['Next.js', 'TypeScript', 'Supabase', 'shadcn/ui'],
     links: {
       github: 'https://github.com/REXFEDEC/ScanWeb',
-      live: 'https://scan.goneto.space',
+      live: 'not live',
     },
     content: {
       subheading: 'A web-based vulnerability scanner with AI-assisted reporting.',
@@ -205,7 +205,7 @@ export const projects: Project[] = [
     stack: ['Next.js', 'TypeScript', 'Supabase', 'shadcn/ui'],
     links: {
       github: 'https://github.com/REXFEDEC/SecureNotes',
-      live: 'https://notes.goneto.space',
+      live: 'not live',
     },
     content: {
       subheading: 'A secure, Markdown-first note-taking app with cloud storage.',
@@ -391,7 +391,7 @@ export const buildTimes = [
 ]
 
 export const contactLinks = [
-  { label: 'Email', value: 'sameermann5335@gmail.com', href: 'mailto:sameermann5335@gmail.com' },
+  { label: 'Email', value: 'sameer@smann.cc', href: 'mailto:sameer@smann.cc' },
   { label: 'GitHub', value: 'github.com/REXFEDEC', href: 'https://github.com/REXFEDEC' },
   { label: 'LinkedIn', value: 'linkedin.com/in/sameer-mann', href: 'https://linkedin.com/in/sameer-mann' },
   { label: 'Instagram', value: 'instagram.com/sameer.mkv', href: 'https://instagram.com/sameer.mkv' },

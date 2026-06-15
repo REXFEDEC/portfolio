@@ -53,7 +53,7 @@ const SUGGESTED_RESPONSES: Record<string, string> = {
 - **Freelance projects**
 - **Interesting collaborations**
 
-You can reach him at [sameermann5335@gmail.com](mailto:sameermann5335@gmail.com) or via [LinkedIn](https://linkedin.com/in/sameer-mann).
+You can reach him at [sameer@smann.cc](mailto:sameer@smann.cc) or via [LinkedIn](https://linkedin.com/in/sameer-mann).
 
 [Get in touch →](/contact)`,
 
