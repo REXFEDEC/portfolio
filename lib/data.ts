@@ -20,7 +20,7 @@ export const heroContent = {
 Currently finishing my CS degree at GGSIPU (graduating 2026). 
 Spent 5 months at an Antler-backed venture studio shipping SaaS MVPs.
 
-Working stack includes: React, Flutter, Python, Firebase, and more.
+Working stack includes: Python, Azure, React, Firebase, and more.
 
 Open to full-time roles, remote work, and freelance projects.`,
 }
