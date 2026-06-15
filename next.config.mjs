@@ -17,6 +17,8 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react'],
   },
   reactStrictMode: true,
+  // Domain configuration
+  assetPrefix: process.env.NODE_ENV === 'production' ? 'https://projects.smann.cc' : '',
 }
 
 export default nextConfig

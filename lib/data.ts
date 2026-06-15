@@ -28,8 +28,8 @@ Open to full-time roles, remote work, and freelance projects.`,
 export const stats = [
   { label: 'Projects shipped', value: '9+' },
   { label: 'Live products', value: '7' },
-  { label: 'Currently Working on', value: 'Sieve' },
-  { label: 'Current status', value: 'Open to work' },
+  { label: 'Currently Learning', value: 'DevOps' },
+  { label: 'Work status', value: 'Open to work' },
 ]
 
 export type Project = {

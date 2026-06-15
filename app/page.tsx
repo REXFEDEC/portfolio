@@ -28,12 +28,6 @@ export default function Home() {
                 View all projects
                 <span aria-hidden="true">→</span>
               </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-border text-foreground rounded-lg font-medium hover:bg-card transition-colors"
-              >
-                Get in touch
-              </Link>
             </div>
           </div>
 

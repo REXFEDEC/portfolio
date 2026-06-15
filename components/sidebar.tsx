@@ -94,49 +94,7 @@ export function Sidebar() {
           )}
         </div>
 
-        {/* Experience Section */}
-        <div>
-          <div className="text-xs uppercase tracking-widest font-semibold text-muted-foreground mb-4">Experience</div>
-          <ul className="space-y-2">
-            <li>
-              <Link
-                href="/experience"
-                className={`flex items-center gap-2 text-sm px-3 py-2 rounded transition-colors ${
-                  isActive('/experience') ? 'bg-accent/10 text-accent font-medium' : 'text-foreground hover:bg-muted'
-                }`}
-                aria-current={isActive('/experience') ? 'page' : undefined}
-              >
-                {/* Light mode icon */}
-                <img src="/svg/we-light.svg" alt="" className="w-4 h-4 icon-light" />
-                {/* Dark mode icon */}
-                <img src="/svg/we-dark.svg" alt="" className="w-4 h-4 icon-dark" />
-                Work & Education
-              </Link>
-            </li>
-          </ul>
-        </div>
 
-        {/* Contact Section */}
-        <div>
-          <div className="text-xs uppercase tracking-widest font-semibold text-muted-foreground mb-4">Contact</div>
-          <ul className="space-y-2">
-            <li>
-              <Link
-                href="/contact"
-                className={`flex items-center gap-2 text-sm px-3 py-2 rounded transition-colors ${
-                  isActive('/contact') ? 'bg-accent/10 text-accent font-medium' : 'text-foreground hover:bg-muted'
-                }`}
-                aria-current={isActive('/contact') ? 'page' : undefined}
-              >
-                {/* Light mode icon */}
-                <img src="/svg/gt-light.svg" alt="" className="w-4 h-4 icon-light" />
-                {/* Dark mode icon */}
-                <img src="/svg/gt-dark.svg" alt="" className="w-4 h-4 icon-dark" />
-                Get in Touch
-              </Link>
-            </li>
-          </ul>
-        </div>
       </nav>
     </aside>
   )
